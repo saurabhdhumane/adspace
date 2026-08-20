@@ -1,18 +1,19 @@
 {
-  "name": "highwaybanner",
+  "name": "adspace-monorepo",
   "version": "1.0.0",
-  "main": "index.js",
-  "dependencies": {
-    "expo": "~57.0.14",
-    "expo-status-bar": "~57.0.1",
-    "react": "19.2.3",
-    "react-native": "0.86.2"
-  },
+  "private": true,
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "dev:server": "pnpm --filter adspace-server dev",
+    "dev:owner": "pnpm --filter adspace-owner start",
+    "dev:user": "pnpm --filter adspace-user start",
+    "android:owner": "pnpm --filter adspace-owner android",
+    "android:user": "pnpm --filter adspace-user android",
+    "build:shared": "pnpm --filter @adspace/shared build",
+    "build:server": "pnpm --filter adspace-server build",
+    "test:server": "pnpm --filter adspace-server test",
+    "test": "pnpm --filter adspace-server test"
   },
-  "private": true
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
 }
