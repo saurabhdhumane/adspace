@@ -2,7 +2,7 @@
 
 This directory contains serverless AWS Lambda function handlers for asynchronous backend automation:
 
-1. **`image-pipeline`**: Automatically triggered by S3 `ObjectCreated` events when space owners upload banner photos. Generates thumbnail previews and updates MongoDB document references.
+1. **`image-pipeline`**: Automatically triggered by media storage upload events (ImageKit / storage webhooks) when space owners upload banner photos. Generates thumbnail previews and updates MongoDB document references.
 2. **`availability-expiry`**: Hourly EventBridge cron job that scans all banners with `status: 'busy'` and auto-flips them to `status: 'available'` when their booked slot date ranges have passed.
 3. **`notifications`**: Subscribed to the SNS Topic (`SNS_TOPIC_ARN`). Dispatches push notifications to the Expo Push API (`https://exp.host/--/api/v2/push/send`) whenever new inquiries are created or responded to.
 

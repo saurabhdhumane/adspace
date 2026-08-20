@@ -5,12 +5,20 @@ import { requireAuth, requireRole } from '../middleware/auth.js';
 const router = Router();
 
 router.post('/presign', requireAuth, requireRole('owner'), getPresignedUrl);
+router.post('/auth', requireAuth, requireRole('owner'), getPresignedUrl);
 
-// Mock S3 endpoint for development mode
+// Mock ImageKit endpoint for development mode
+router.all('/mock-imagekit-upload', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Mock ImageKit upload successful',
+    key: req.query.key,
+  });
+});
 router.all('/mock-s3-upload', (req, res) => {
   res.json({
     success: true,
-    message: 'Mock S3 upload successful',
+    message: 'Mock ImageKit upload successful (legacy path)',
     key: req.query.key,
   });
 });

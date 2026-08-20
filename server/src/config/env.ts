@@ -13,7 +13,9 @@ export const env = {
   AWS_REGION: process.env.AWS_REGION || 'ap-south-1',
   AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID || '',
   AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY || '',
-  S3_BUCKET: process.env.S3_BUCKET || 'adspace-media',
+  IMAGEKIT_PUBLIC_KEY: process.env.IMAGEKIT_PUBLIC_KEY || '',
+  IMAGEKIT_PRIVATE_KEY: process.env.IMAGEKIT_PRIVATE_KEY || '',
+  IMAGEKIT_URL_ENDPOINT: process.env.IMAGEKIT_URL_ENDPOINT || 'https://ik.imagekit.io/adspace',
   SNS_TOPIC_ARN: process.env.SNS_TOPIC_ARN || '',
   CLIENT_ORIGINS: process.env.CLIENT_ORIGINS ? process.env.CLIENT_ORIGINS.split(',') : ['*'],
 };

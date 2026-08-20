@@ -1,6 +1,7 @@
 import request from 'supertest';
 import { createApp } from '../app';
 import { computeBannerStatus } from '@adspace/shared';
+import { generateImageKitAuth } from '../services/imagekit.service';
 
 describe('Server API Unit & Integration Tests', () => {
   const app = createApp();
@@ -47,6 +48,18 @@ describe('Server API Unit & Integration Tests', () => {
         },
       ]);
       expect(status).toBe('available');
+    });
+  });
+
+  describe('ImageKit Upload Auth Unit Test', () => {
+    it('should generate valid upload auth parameters for ImageKit', async () => {
+      const auth = await generateImageKitAuth('test-banner.png', 'image/png');
+      expect(auth).toHaveProperty('uploadUrl');
+      expect(auth).toHaveProperty('key');
+      expect(auth.key).toContain('banners/');
+      expect(auth).toHaveProperty('finalUrl');
+      expect(auth).toHaveProperty('token');
+      expect(auth).toHaveProperty('signature');
     });
   });
 });

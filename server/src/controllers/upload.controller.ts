@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { generatePresignedUploadUrl } from '../services/s3.service.js';
+import { generateImageKitAuth } from '../services/imagekit.service.js';
 
 export const getPresignedUrl = async (req: Request, res: Response) => {
   try {
@@ -11,7 +11,7 @@ export const getPresignedUrl = async (req: Request, res: Response) => {
       });
     }
 
-    const result = await generatePresignedUploadUrl(filename, fileType);
+    const result = await generateImageKitAuth(filename, fileType);
     return res.json({
       success: true,
       data: result,
@@ -19,7 +19,7 @@ export const getPresignedUrl = async (req: Request, res: Response) => {
   } catch (error: any) {
     return res.status(500).json({
       success: false,
-      error: { code: 'PRESIGN_URL_ERROR', message: error.message },
+      error: { code: 'IMAGEKIT_AUTH_ERROR', message: error.message },
     });
   }
 };
